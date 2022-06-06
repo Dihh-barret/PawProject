@@ -39,4 +39,32 @@ func (m *TravelModel) GetUser(id int) (*models.Usuarios, error) { //te, algum er
 	return s, nil
 }
 
+func (m *TravelModel) UsuarioPagCom(id int) ([]*models.PagamentosCompras, error) {
+	stmt := `SELECT * FROM pagamentos_compras INNER JOIN idusuario ON pagamentos_compras.Usuarios_idusuario = usuarios.idusuario
+          WHERE usuarios.idusuario = ?`
+
+	rows, err := m.DB.Query(stmt)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	//crando slice
+	PagamentosComprasS := []*models.PagamentosCompras{}
+	for rows.Next() {
+    s:= &models.PagamentosCompras{}
+    err = rows.Scan(&s.IdPagamentosCompras, &s.ValorTotal, &s.DataPag, &s.U_IdUsuario, &s.TipoPag_IdTipoPagamento)
+    if err != nil{
+      return nil, err
+    }
+    PagamentosComprasS = append(PagamentosComprasS, s)
+	
+  }
+  err = rows.Err()
+  if err != nil{ //executa funcao, coloca na variavel 
+    return nil, err //executa
+  }
+	return nil, nil
+}
+
 

@@ -12,7 +12,7 @@ func (m *TravelModel) InsertPass(IdPassagem int, Numero int, DataEmbarque time.T
 	stmt := `INSERT INTO passagens (idpassagens, NumeroDaPassagem, DataEmbarque, Preco, EmpresasAereas_idEmpresasAereas) 
             VALUES(?,?,?,?,?)`
 
-	result, err := m.DB.Exec(stmt, IdPassagem, Numero, DataEmbarque, Preço, Status,Emp_IdEmpresasAerea)
+	result, err := m.DB.Exec(stmt, IdPassagem, Numero, DataEmbarque, Preço, Emp_IdEmpresasAerea)
 	if err != nil {
 		return 0, err
 	}
@@ -31,7 +31,7 @@ func (m *TravelModel) GetPass(id int) (*models.Passagens, error) { //te, algum e
 
 	s := &models.Passagens{}
 
-	err := row.Scan(&s.IdPassagem, &s.Numero, &s.DataEmbarque, &s.Preço, &s.Status, &s.Emp_IdEmpresasAerea)
+	err := row.Scan(&s.IdPassagem, &s.Numero, &s.DataEmbarque, &s.Preço, &s.Emp_IdEmpresasAerea)
 	if err == sql.ErrNoRows {
 		return nil, models.ErrNoRecord
 	} else if err != nil {

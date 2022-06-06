@@ -3,7 +3,7 @@ package mysql
 import (
 	"database/sql"
 	"merlin.com/box/pkg/models"
-  "time"
+  
 ) 
 func (m *TravelModel) InsertTipo(IdTipoPagamento int, Tipo string )  (int, error) {
 	stmt := `INSERT INTO idTipo_pagamentos, Tipo) 

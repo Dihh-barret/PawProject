@@ -15,7 +15,7 @@ import (
 type application struct {
 	errorLog *log.Logger
 	infolog  *log.Logger
-  Travel *mysql.TravelModel
+  Travels *mysql.TravelModel
 }
 
 //curl -i -X GET http://localhost:4000/snippet/create
@@ -31,18 +31,18 @@ func main() {
 	errorLog := log.New(os.Stderr, "ERRO:\t",
 		log.Ldate|log.Ltime|log.Lshortfile)
 	//conectar banco de dados
+  
 	db, err := openDB(*dsn)
 	if err != nil {
 		errorLog.Fatal(err)
 	}
-
 	defer db.Close() // se der ruim vai fechar o db
 
 	//como se fosse objeto
 	app := &application{
 		errorLog: errorLog,
 		infolog:  infoLog,
-    Travel: &mysql.TravelModel{DB:db},
+    Travels: &mysql.TravelModel{DB:db},
 	}
 
 	srv := &http.Server{

@@ -5,27 +5,56 @@
 <head>
     <meta charset='utf-8'>
     <title>{{template "title" .}} - Snippetbox</title>
-    <!-- Link to the CSS stylesheet and favicon -->
     <link rel='stylesheet' href='/static/css/main.css'>
+    <!-- Link to the CSS stylesheet and favicon --> 
     <link rel='shortcut icon' href='/static/img/favicon.ico' type='image/x-icon'>
     <!-- Also link to some fonts hosted by Google -->
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700'>
 </head>
 
 <body>
-    <header>
-        <h1><a href='/'>Snippetbox</a></h1>
+   <div>
+  <div class="landing page-container">
+    <header data-role="Header" class="landing page-header">
+      <div class="landing page-container1">
+       <!-->  <img
+          alt="logo"
+          src="https://presentation-website-assets.teleporthq.io/logos/logo.png"
+          class="landing page-image"
+        /> <!-->
+        <div class="landing page-nav">
+          <nav
+            class="navigation-links1-nav navigation-links1-root-class-name12"
+          >
+            <span class="navigation-links1-text"><span>About</span></span>
+            <span class="navigation-links1-text1"><span>Features</span></span>
+            <span class="navigation-links1-text2"><span>Pricing</span></span>
+            <span class="navigation-links1-text3"><span>Team</span></span>
+            <span class="navigation-links1-text4"><span>Blog</span></span>
+          </nav>
+        </div>
+      </div>
+      <div class="landing page-testimonial">
+     <!-->    <img
+          alt="profile"
+          src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDE0fHxwb3J0cmFpdHxlbnwwfHx8fDE2MjYzNzg5NzI&amp;ixlib=rb-1.2.1&amp;w=200"
+          class="landing page-image1"
+        /> <!-->
+        <span class="landing page-text">John Doe</span>
+      </div>
     </header>
-    <nav>
-        <a href='/'>Home</a>
-    </nav>
-    <section>
+    <section class="sectionBody">
         {{template "body" .}}
     </section>
     {{template "footer" .}}
+    
+  </div>
+</div>
     <!-- And include the JavaScript file -->
     <script src="/static/js/main.js" type="text/javascript"></script>
 </body>
 
 </html>
 {{end}}
+ 
+   

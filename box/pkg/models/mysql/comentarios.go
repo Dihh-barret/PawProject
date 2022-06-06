@@ -25,7 +25,7 @@ func (m *TravelModel) InsertComent(IdComentarios int, Texto string, DataComent t
 }
 
 func (m *TravelModel) GetComent(id int) (*models.Comentarios, error) { //te, algum erro
-	stmt := `SELECT idcomentario, Texto, DataComentario, UpVotes, DownVotes, QuantVotes, Usuarios_idusuario, Hoteis_idhoteis FROM comentarios
+	stmt := `SELECT idcomentario, Texto, DataComentario, UpVotes, DownVotes, Usuarios_idusuario, Hoteis_idhoteis FROM comentarios
            WHERE id = ?`
 	row := m.DB.QueryRow(stmt, id)
 
@@ -42,8 +42,8 @@ func (m *TravelModel) GetComent(id int) (*models.Comentarios, error) { //te, alg
 //volta depois
 
 func (m *TravelModel) LatestComent() ([]*models.Comentarios, error) {
-	stmt := `SELECT idcomentario, Texto, DataComentario, UpVotes, DownVotes, QuantVotes, Usuarios_idusuario, Hoteis_idhoteis FROM comentarios
-           WHERE `
+	stmt := `SELECT * FROM comentarios INNER JOIN Hoteis
+           on comentarios.Hoteis_IdHoteis = Hoteis.IdHoteis ORDER BY created DESC LIMIT 10`
 
 	rows, err := m.DB.Query(stmt)
 	if err != nil {

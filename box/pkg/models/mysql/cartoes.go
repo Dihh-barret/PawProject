@@ -40,30 +40,30 @@ func (m *TravelModel) GetCartoes(id int) (*models.Cartoes, error) { //te, algum 
 }
 //volta depois
 
-func (m *TravelModel) LatestCartoes() ([]*models.Cartoes, error) {
-	stmt := `SELECT idcartoes, Numero,Cvv, DataEmi,DataVal, Usuarios_idusuario  FROM hoteis
-          WHERE `
+func (m *TravelModel) CartoesUsurio(id int) ([]*models.Cartoes, error) {
+	stmt := `SELECT * FROM cartoes INNER JOIN usuarios on cartoes.usuarios.idsuarios = usuarios.idsuarios 
+          WHERE usuarios.idsuarios = ?`
 
-	rows, err := m.DB.Query(stmt)
+	rows, err := m.DB.Query(stmt, id)
 	if err != nil {
 		return nil, err
 	}
 	defer rows.Close()
 
 	//crando slice
-	HoteisS := []*models.Hoteis{}
+	CartoesS := []*models.Cartoes{}
 	for rows.Next() {
-    s:= &models.Hoteis{}
-    err = rows.Scan(&s.ID, &s.Title, &s.Content, &s.Created, &s.Expires)
+    s:= &models.Cartoes{}
+    err = rows.Scan(&s.IdCartoes, &s.Numero, &s.Cvv, &s.DataEmi, &s.DataVal)
     if err != nil{
       return nil, err
     }
-    HoteisS = append(HoteisS, s)
+    CartoesS = append(CartoesS, s)
 	
   }
   err = rows.Err()
   if err != nil{ //executa funcao, coloca na variavel 
     return nil, err //executa
-  }
+  } 
 	return nil, nil
 }
