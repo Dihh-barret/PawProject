@@ -1,12 +1,13 @@
 # PawProject
 
-Ideia Geral do site:
-Ser um Site de agência de viagem, algo parecido com o trivago e decolar.
+Ideia Geral:
+API CRUD feita com golang e MYSQL
 
 Funcionalidades:
-* Item 1
-* Item 2
-* Item 3
-* Item 4
+* Criar Pessoa
+* Alterar dados da pessoa
+* Listar pessoas
+* Deletar pessoas
 
-Vídeo demonstrativo:
+Vídeo demonstrativo: 
+https://www.youtube.com/watch?v=RCSxmUQETxY
